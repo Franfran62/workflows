@@ -1,16 +1,16 @@
 name: Exercice de workflow
 on: push
-  jobs: 
-    exercice: 
-      name: Exercice de workflow
-      runs-on: ubuntu-latest
-      steps:
-        - name: get the code !
-          run: actions/checkout@v4
-        - name: installation des node_modules
-          run: npm ci
-        - name: build
-          run: npm run build
-        - name: start
-          run: npm run start
+jobs: 
+  exercice: 
+    name: Exercice de workflow
+    runs-on: ubuntu-latest
+    steps:
+      - name: get the code !
+        run: actions/checkout@v4
+      - name: installation des node_modules
+        run: npm ci
+      - name: build
+        run: npm run build
+      - name: start
+        run: npm run start
         
