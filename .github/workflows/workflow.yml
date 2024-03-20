@@ -8,7 +8,7 @@ jobs:
       - name: get the code !
         uses: actions/checkout@v4
       - name: installation des node_modules
-        run: npm ci
+        run: npm install
       - name: build
         run: npm run build
       - name: start
