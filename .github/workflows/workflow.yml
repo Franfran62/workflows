@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: get the code !
-        run: actions/checkout@v4
+        uses: actions/checkout@v4
       - name: installation des node_modules
         run: npm ci
       - name: build
