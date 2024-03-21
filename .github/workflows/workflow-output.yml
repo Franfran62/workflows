@@ -1,0 +1,20 @@
+name: Cours sur les Outputs des Workflows
+run-name: Workflow Output : "${{github.workflow}} pour le commit ${{github.event.head_commit.message}}"
+
+on: push
+jobs:
+    job1:
+        name: set var1
+        runs-on: ubuntu-latest
+        steps:
+            - id: steps1
+              name: set var1
+              run: echo "VAR1=HELLO" >> $GITHUB_OUTPUT
+            - id: steps2
+              name: set var2
+              run: echo "VAR3=WORLD" >> $GITHUB_OUTPUT
+            - id: steps3
+              name: echo var1 var2
+              run: echo ${{steps.steps1.outputs.var1 }} && ${{steps.steps2.outputs.var2}}
+
+
