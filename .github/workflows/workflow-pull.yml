@@ -1,0 +1,12 @@
+name: Exercice de workflow
+
+on: 
+    pull_request:
+        types: opened
+
+jobs: 
+  exercice: 
+    name: Exercice de workflow
+    runs-on: ubuntu-latest
+    steps:
+        - run: echo "Il y a eu un pull"
