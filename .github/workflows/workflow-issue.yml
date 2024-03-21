@@ -1,0 +1,19 @@
+name: Workflow qui se déclenche lors de la création d'une issue 
+on: 
+    issues:
+        types:
+            - opened
+
+jobs:
+    commentaire: 
+        runs-on: ubuntu-latest
+        steps:
+            - run: gh issue comment --body "coucou from workflow"
+              env: 
+                GH_TOKEN: ${{ secrets.GITHUB.TOKEN }}
+                ISSUE_URL:  ${{ github.event.issue.html_url }}
+    output: 
+        runs-on: ubuntu-latest
+        steps: 
+            - run: echo "Nouvelle issue - ${{ github.event.issue.title }}"
+  
