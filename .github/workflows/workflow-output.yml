@@ -1,5 +1,5 @@
 name: Cours sur les Outputs des Workflows
-run-name: Workflow Output : "${{github.workflow}} pour le commit ${{github.event.head_commit.message}}"
+run-name: Workflow Output "${{github.workflow}} pour le commit ${{github.event.head_commit.message}}"
 
 on: push
 jobs:
