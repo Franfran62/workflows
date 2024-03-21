@@ -15,6 +15,6 @@ jobs:
               run: echo "VAR3=WORLD" >> $GITHUB_OUTPUT
             - id: steps3
               name: echo var1 var2
-              run: echo ${{steps.steps1.outputs.var1 }} && ${{steps.steps2.outputs.var2}}
+              run: echo "${{steps.steps1.outputs.var1 }} && ${{steps.steps2.outputs.var2}}"
 
 
