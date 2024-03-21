@@ -4,17 +4,28 @@ run-name: Workflow Output "${{github.workflow}} pour le commit ${{github.event.h
 on: push
 jobs:
     job1:
-        name: set var1
+        name: set var1, var2 et echo
         runs-on: ubuntu-latest
+        outputs: 
+            sortie1: ${{ steps.steps1.outputs.var1 }}
+            sortie2: ${{ steps.steps2.outputs.var2 }}
         steps:
             - id: steps1
               name: set var1
               run: echo "VAR1=HELLO" >> $GITHUB_OUTPUT
             - id: steps2
               name: set var2
-              run: echo "VAR3=WORLD" >> $GITHUB_OUTPUT
-            - id: steps3
+              run: echo "VAR2=WORLD" >> $GITHUB_OUTPUT
+            - id: echo-steps1-2
               name: echo var1 var2
               run: echo "${{steps.steps1.outputs.var1 }} && ${{steps.steps2.outputs.var2}}"
+    job2:
+        needs: job1
+        name: Récupère les paramètres de job1
+        runs-on: ubuntu-latest
+        steps: 
+            - id: etape1
+              name: echo sortie1 sortie2
+              run: echo "${{ needs.job1.outputs.sortie1 }} and ${{ needs.job1.outputs.sortie2 }}"
 
 
