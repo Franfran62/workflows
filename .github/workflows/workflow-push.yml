@@ -21,3 +21,5 @@ jobs:
         with: 
           name: mon-site
           path: .next/
+      - name: sommaire
+        run: echo "Je suis push dans le "summary" >> $GITHUB_STEP_SUMMARY
