@@ -7,7 +7,7 @@ jobs:
     name: Exercice de workflow
     runs-on: ubuntu-latest
     outputs: 
-      result-test: ${{steps.run-test.results }}
+      result-test: ${{steps.run-test.outputs.result }}
     steps:
       - name: get the code !
         uses: actions/checkout@v4
@@ -24,7 +24,7 @@ jobs:
       - name: installation des node_modules
         run: npm install
       - id: run-test
-        run: npm run test
+        run: npm run test >> $GITHUB_OUTPUT
         continue-on-error: true
       # - name: build
       #   run: npm run build
