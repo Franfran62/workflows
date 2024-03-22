@@ -43,6 +43,6 @@ jobs:
     steps: 
       - name: get le résultat des tests
         run: | 
-          echo "Les tests sont : $OUTPUT_TEST" >> $GITHUB_STEP_SUMMARY
+          echo "Les tests sont : $OUTPUT_TEST"
         env: 
           OUTPUT_TEST: ${{ needs.exercice1.outputs.result-test }}
