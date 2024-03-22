@@ -7,7 +7,7 @@ jobs:
     name: Exercice de workflow
     runs-on: ubuntu-latest
     outputs: 
-      result-test: ${{steps.run-test.result}}
+      result-test: ${{steps.run-test }}
     steps:
       - name: get the code !
         uses: actions/checkout@v4
@@ -26,16 +26,15 @@ jobs:
       - id: run-test
         run: |
           npm run test
-          echo ${{ steps.run-test.result }} >> $GITHUB_OUTPUT
-      - name: build
-        run: npm run build
-      - name: upload le resultat du build 
-        uses: actions/upload-artifact@v4
-        with: 
-          name: mon-site
-          path: .next/
-      - name: sommaire
-        run: echo "Je suis push dans le summary" >> $GITHUB_STEP_SUMMARY
+      # - name: build
+      #   run: npm run build
+      # - name: upload le resultat du build 
+      #   uses: actions/upload-artifact@v4
+      #   with: 
+      #     name: mon-site
+      #     path: .next/
+      # - name: sommaire
+      #   run: echo "Je suis push dans le summary" >> $GITHUB_STEP_SUMMARY
   
   exercice2: 
     name: On récupère les resultats des tests
@@ -44,4 +43,6 @@ jobs:
     steps: 
       - name: get le résultat des tests
         run: | 
-          echo "Les tests sont : ${{ needs.exercice1.outputs.result-test }}" >> $GITHUB_STEP_SUMMARY
+          echo "Les tests sont : $OUTPUT_TEST" >> $GITHUB_STEP_SUMMARY
+        env: 
+          OUTPUT_TEST: ${{ needs.exercice1.outputs.result-test }}
