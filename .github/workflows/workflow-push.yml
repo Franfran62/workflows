@@ -7,7 +7,7 @@ jobs:
     name: Exercice de workflow
     runs-on: ubuntu-latest
     outputs: 
-      result-test: ${{steps.run-test }}
+      result-test: ${{steps.run-test.conclusion }}
     steps:
       - name: get the code !
         uses: actions/checkout@v4
