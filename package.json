@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "next dev",
+    "test": "echo \"Les tests ont échoué :(\" && exit 1",
     "build": "next build && next export",
     "start": "next start --port 80"
   },

@@ -1,9 +1,13 @@
 name: Exercice de workflow
 on: push
+
 jobs: 
-  exercice: 
+
+  exercice1: 
     name: Exercice de workflow
     runs-on: ubuntu-latest
+    outputs: 
+      result-test: ${{steps.run-test.result}}
     steps:
       - name: get the code !
         uses: actions/checkout@v4
@@ -11,9 +15,17 @@ jobs:
         uses: actions/cache@v4
         with: 
           path: ~/.npm
-          key: deps-node-modules-${{ hashfFiles('**/package-lock.json') }}
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+        # voir aussi : le cache de actions/setup-node
+        # name: setup node
+        # uses: actions/setup-node@v4
+        # with: 
+        #   cache: 'npm'
       - name: installation des node_modules
         run: npm install
+      - name: run les tests
+        id: run-test
+        run: npm run test
       - name: build
         run: npm run build
       - name: upload le resultat du build 
@@ -23,3 +35,12 @@ jobs:
           path: .next/
       - name: sommaire
         run: echo "Je suis push dans le "summary" >> $GITHUB_STEP_SUMMARY
+  
+  exercice2: 
+    name: On récupère les resultats des tests
+    runs-on: ubuntu-latest
+    needs: exercice1
+    steps: 
+      - name: get le résultat des tests
+        run: | 
+          echo "Les tests sont : ${{ needs.exercice1.outputs.result-test }}" >> $GITHUB_STEP_SUMMARY
