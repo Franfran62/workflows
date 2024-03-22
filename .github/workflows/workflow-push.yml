@@ -11,11 +11,11 @@ jobs:
     steps:
       - name: get the code !
         uses: actions/checkout@v4
-      - name: mis en cache 
-        uses: actions/cache@v4
-        with: 
-          path: ~/.npm
-          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+      # - name: mis en cache 
+      #   uses: actions/cache@v4
+      #   with: 
+      #     path: ~/.npm
+      #     key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
         # voir aussi : le cache de actions/setup-node
         # name: setup node
         # uses: actions/setup-node@v4
@@ -23,9 +23,8 @@ jobs:
         #   cache: 'npm'
       - name: installation des node_modules
         run: npm install
-      - name: run les tests
-        id: run-test
-        run: npm run test
+      - id: run-test
+        run: npm run test >> $GITHUB_OUTPUT
       - name: build
         run: npm run build
       - name: upload le resultat du build 
